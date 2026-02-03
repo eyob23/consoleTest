@@ -1,3 +1,4 @@
+using Azure.Monitor.OpenTelemetry.AspNetCore;
 using Azure.Monitor.OpenTelemetry.Exporter;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -34,6 +35,15 @@ public static class ServiceCollectionExtensions
         var resource = ResourceBuilder.CreateDefault()
             .AddService(configuration.ServiceName, serviceVersion: configuration.ServiceVersion);
 
+        if (configuration.UseAzureMonitor)
+        {
+            services.AddOpenTelemetry()
+                .UseAzureMonitor(azureOptions =>
+                {
+                    azureOptions.ConnectionString = configuration.ConnectionString;
+                });
+        }
+
         services.AddLogging(loggingBuilder =>
         {
             loggingBuilder.AddOpenTelemetry(options =>
@@ -63,13 +73,15 @@ public static class ServiceCollectionExtensions
     /// <param name="serviceName">Optional: The service name (defaults to "WebAPI").</param>
     /// <param name="serviceVersion">Optional: The service version (defaults to "1.0.0").</param>
     /// <param name="includeConsoleExporter">Optional: Whether to include console exporter for debugging.</param>
+    /// <param name="useAzureMonitor">Optional: Whether to enable the Azure Monitor OpenTelemetry distro.</param>
     /// <returns>The service collection for chaining.</returns>
     public static IServiceCollection AddAzureApplicationInsightsLogging(
         this IServiceCollection services,
         string connectionString,
         string serviceName = "WebAPI",
         string serviceVersion = "1.0.0",
-        bool includeConsoleExporter = false)
+        bool includeConsoleExporter = false,
+        bool useAzureMonitor = false)
     {
         return services.AddAzureApplicationInsightsLogging(options =>
         {
@@ -77,6 +89,7 @@ public static class ServiceCollectionExtensions
             options.ServiceName = serviceName;
             options.ServiceVersion = serviceVersion;
             options.IncludeConsoleExporter = includeConsoleExporter;
+            options.UseAzureMonitor = useAzureMonitor;
         });
     }
 }

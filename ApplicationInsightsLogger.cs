@@ -29,6 +29,11 @@ public class ApplicationInsightsLoggerConfiguration
     /// Gets or sets whether to include console exporter (for debugging).
     /// </summary>
     public bool IncludeConsoleExporter { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets whether to enable the Azure Monitor OpenTelemetry distro.
+    /// </summary>
+    public bool UseAzureMonitor { get; set; } = false;
 }
 
 /// <summary>
