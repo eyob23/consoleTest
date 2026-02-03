@@ -1,0 +1,147 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options directory
+.vs/
+
+# Visual Studio Code
+.vscode/
+.vscode-test/
+*.code-workspace
+
+# Rider IDE
+.idea/
+*.sln.iml
+.rider/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Local History for Visual Studio
+.localhistory/
+
+# BeatPulse healthcheck temp database 
+healthchecksdb
+
+# Backup & temporary files
+*.tmp
+*.bak
+*.swp
+*~
+*.orig
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+nuget.config
+
+# Package manager
+packages/
+.packages/
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# VS Code extensions
+extensions.json
+
+# dotenv local files
+.env.local
+.env.*.local
+
+# Test results
+TestResults/
+coverage/
+.coverage/
+*.trx
+*.coverage
+
+# macOS
+.DS_Store
+*.swp
+*.swo
+
+# Linux
+.swp
+*~
+
+# Windows
+Thumbs.db
+*.lnk
+
+# IntelliJ IDEA
+out/
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+
+# Misc
+*.class
+*.log
+*.ctxt
+.mtj.tmp/
+*.jar
+*.rar
+*.zip
+*.gz
+*.iso
+*.exe
+*.msi
+
+# Python (if using build scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Terraform (if using infrastructure as code)
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Azure
+.azure/
+appsettings.local.json
+appsettings.Development.json
+secrets.json
+local.settings.json
+
+# CI/CD
+.github/workflows/secrets/
+
+# Build output
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Dependencies lock files (optional - uncomment if not using)
+# package-lock.json
+# yarn.lock
