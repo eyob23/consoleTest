@@ -1,5 +1,8 @@
+using Azure.Monitor.OpenTelemetry.Exporter;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Resources;
 
 namespace AzureApplicationInsightsLogger;
 
@@ -28,9 +31,26 @@ public static class ServiceCollectionExtensions
                 "Please configure it using AddAzureApplicationInsightsLogging options.");
         }
 
-        // Create and register the logger factory
-        var loggerFactory = ApplicationInsightsLoggerFactory.CreateLoggerFactory(configuration);
-        services.AddSingleton(loggerFactory);
+        var resource = ResourceBuilder.CreateDefault()
+            .AddService(configuration.ServiceName, serviceVersion: configuration.ServiceVersion);
+
+        services.AddLogging(loggingBuilder =>
+        {
+            loggingBuilder.AddOpenTelemetry(options =>
+            {
+                options.SetResourceBuilder(resource);
+
+                if (configuration.IncludeConsoleExporter)
+                {
+                    options.AddConsoleExporter();
+                }
+
+                options.AddAzureMonitorLogExporter(azureOptions =>
+                {
+                    azureOptions.ConnectionString = configuration.ConnectionString;
+                });
+            });
+        });
 
         return services;
     }
