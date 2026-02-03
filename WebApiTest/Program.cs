@@ -2,6 +2,8 @@ using AzureApplicationInsightsLogger;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host.AddSerilogFileLogging(builder.Configuration);
+
 builder.Services.AddControllers();
 
 builder.Services.AddAzureApplicationInsightsLogging(options =>
